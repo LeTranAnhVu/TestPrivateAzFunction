@@ -14,7 +14,7 @@ namespace Company.FunctionApp5;
 public static class HttpTrigger
 {
     [FunctionName("HttpTrigger")]
-    public static async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log, ICollector<string> outputQueueItem)
+    public static async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log, [Queue("myqueue")] ICollector<string> outputQueueItem)
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
