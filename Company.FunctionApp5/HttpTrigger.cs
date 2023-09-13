@@ -14,7 +14,7 @@ namespace Company.FunctionApp5;
 public static class HttpTrigger
 {
     [FunctionName("HttpTrigger")]
-    public static async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log)
+    public static async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log, ICollector<string> outputQueueItem)
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -23,6 +23,8 @@ public static class HttpTrigger
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
         dynamic data = JsonConvert.DeserializeObject(requestBody);
         name = name ?? data?.name;
+        
+        outputQueueItem.Add("Name passed to the function: " + name);
 
         return name != null
             ? (ActionResult)new OkObjectResult($"Hello, {name}")
