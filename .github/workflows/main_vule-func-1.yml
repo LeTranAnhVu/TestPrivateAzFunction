@@ -39,4 +39,4 @@ jobs:
           app-name: 'vule-func-1'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_354951B6F0104EBFB9575572F51BB4D0 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FE2AA7A6EBFF4B37BA2F6CD44840575C }}
